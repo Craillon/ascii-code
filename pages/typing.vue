@@ -4,8 +4,9 @@
             <div class="bg-white/90 backdrop-blur-md h-full w-full absolute bg-gradient-to-t z-10 from-white"></div>
             <div class="w-11/12 mx-auto h-full relative z-50">
                 <div class="">
+                    
                     <UDropdown  class="text-green-500 absolute z-50" :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }" :popper="{ placement: 'bottom-start' }">
-                        <button type="button" class="bg-green-500 flex items-center gap-x-3 bg-gradient-to-r from-green-400 p-2 py-2.5 px-6 rounded shadow-lg mt-4 pr-6 shadow-green-500/40 text-white">
+                        <button :class="[label == '' ? 'w-60' : '']" type="button" class="bg-green-500 w-60 h-11 flex items-center gap-x-3 bg-gradient-to-r from-green-400 p-2 py-2.5 px-6 rounded shadow-lg mt-4 pr-6 shadow-green-500/40 text-white">
                             <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
                                 <path fill-rule="evenodd" d="M18.425 10.271C19.499 8.967 18.57 7 16.88 7H7.12c-1.69 0-2.618 1.967-1.544 3.271l4.881 5.927a2 2 0 0 0 3.088 0l4.88-5.927Z" clip-rule="evenodd"/>
                             </svg>
@@ -13,7 +14,7 @@
                         </button>
                         <!--  -->
                         <template #item="{ item }">
-                            <span @click="changeLevel(item.label)" class="truncate text-slate-800 w-full h-full text-start"> {{ item.label }} </span>
+                            <a href="/typing" @click="changeLevel(item.label)" class="truncate text-slate-800 w-full h-full text-start"> {{ item.label }} </a>
                         </template>
                     </UDropdown>
                 </div>
@@ -85,8 +86,9 @@ const items = [
     ]
 ]
 
+const level = ref("")
 
-const label = ref("Difficulté")
+const label = ref("")
 const lorem = ref(faker.lorem.word())
 const worldTyping = ref(lorem.value)
 const value = ref("")
@@ -101,45 +103,64 @@ const chrono = ref({
 
 const changeLevel = (data) => {
     label.value = data
-    new Promise((resolve, reject) => setTimeout(resolve => {
+    // new Promise((resolve, reject) => setTimeout(resolve => {
+        let fker = ""
         if (data == "Mot") {
-            lorem.value = faker.lorem.word()
+            fker = faker.lorem.word()
+            lorem.value = fker
             worldTyping.value = lorem.value
         }
         if (data == "Mots") {
-            lorem.value = faker.lorem.words()
+            const fker = faker.lorem.words()
+            lorem.value = fker
             worldTyping.value = lorem.value
+            
         }
         if (data == "Phrase") {
-            lorem.value = faker.lorem.sentence()
+            const fker = faker.lorem.sentence()
+            lorem.value = fker
             worldTyping.value = lorem.value
+            
         }
         if (data == "Phrases") {
-            lorem.value = faker.lorem.sentences()
+            const fker = faker.lorem.sentences()
+            lorem.value = fker
             worldTyping.value = lorem.value
+            
         }
         if (data == "Ligne") {
-            lorem.value = faker.lorem.line()
+            const fker = faker.lorem.line()
+            lorem.value = fker
             worldTyping.value = lorem.value
+            
         }
         if (data == "Lignes") {
-            lorem.value = faker.lorem.lines()
+            const fker = faker.lorem.lines()
+            lorem.value = fker
             worldTyping.value = lorem.value
+            
         }
         if (data == "Paragraphe") {
-            lorem.value = faker.lorem.paragraph()
+            const fker = faker.lorem.paragraph()
+            lorem.value = fker
             worldTyping.value = lorem.value
+            
         }
         if (data == "Paragraphes") {
-            lorem.value = faker.lorem.paragraphs()
+            const fker = faker.lorem.paragraphs()
+            lorem.value = fker
             worldTyping.value = lorem.value
+            
         }
         if (data == "Text") {
-            lorem.value = faker.lorem.text()
+            const fker = faker.lorem.text()
+            lorem.value = fker
             worldTyping.value = lorem.value
+            
         }
-
-    }, 100))
+        localStorage.setItem("level", data)
+        
+    // }, 100))
 }
 
 const manupChrono = () => {
@@ -147,6 +168,11 @@ const manupChrono = () => {
 }
 
 onMounted(() => {
+    level.value = !!localStorage.getItem("level") ? localStorage.getItem("level") : "Mot"
+    changeLevel(level.value)
+    // lorem = ref(faker.lorem.word())
+    worldTyping.value = lorem.value
+
     window.addEventListener('keydown', ev => {
         startTime.value = true
         if (lorem.value.split('').at(index.value).charCodeAt(0) == ev.key.charCodeAt(0) || (lorem.value.split('').at(index.value -1) === "." && ev.key === " ") ) {
@@ -157,7 +183,7 @@ onMounted(() => {
     })
     const id = setInterval(timerChrono, 1000/60);
     function timerChrono () {
-        if (worldTyping.value.length === 0) {
+        if (worldTyping.value.length === 0 ) {
             startTime.value = false
             clearInterval(id);
         } else {
@@ -178,22 +204,6 @@ onMounted(() => {
             }
         }
     }
-    
-
-    // const id = setInterval(evnt => {timer.value = (timer.value++) / 60}, 100);
-    // if (startTime) {
-    //     function timerChrono() {
-    //         if (worldTyping.value.length === 0) {
-    //             if ( counter.value <= 0) {
-    //                 startTime.value = false
-    //                 clearInterval(id);
-    //             } else {
-    //                 timer.value = (timer.value++) / 60
-    //             }
-    //         }
-    //     }
-    // }
-
 
 })
 </script>

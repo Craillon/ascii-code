@@ -56,7 +56,7 @@
                 <div v-else class="h-2/5 bg-transparent bg-gradient-to-t from-slate-100/20 rounded-lg border-dashed">
                     <h3 class="text-slate-600 font-semibold text-center text-3xl">Partie terminée !</h3>
                     <div class="flex justify-center  w-full mt-10">
-                        <a href="/typing" class="rounded-full bg-green-200 p-1.5 px-6 shadow-green-100 shadow-md hover:bg-green-300 duration-300">Rejouez</a>
+                        <a href="/typing" class="text-slate-800 rounded-full bg-green-200 p-1.5 px-6 shadow-green-100 shadow-md hover:bg-green-300 duration-300">Rejouez</a>
                     </div>
                 </div>
                 <div class="absolute left-0 right-0 bottom-0 flex items-center justify-center">

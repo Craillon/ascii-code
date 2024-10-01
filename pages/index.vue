@@ -18,7 +18,7 @@
                 </div>
                 <div class="absolute left-0 right-0 bottom-10 flex items-center justify-center">
                     <NuxtLink to="/typing" class=" mb-10 bg-green-400 shadow-lg shadow-green-500/40 text-white hover:bg-green-400 bg-gradient-to-r hover:from-green-500 py-2 hover:shadow-xl hover:duration-700 rounded-full px-6">
-                        Calculez votre temps de saisi !
+                        Calculez votre temps de saisie !
                     </NuxtLink>
                 </div>
             </div>

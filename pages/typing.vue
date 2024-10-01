@@ -4,7 +4,10 @@
             <div class="w-11/12 mx-auto h-full relative">
                 <div class="">
                     <UDropdown  class="text-green-500 absolute z-50" :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }" :popper="{ placement: 'bottom-start' }">
-                        <button type="button" class="bg-green-500 bg-gradient-to-r from-green-400 p-2 rounded-xl shadow-lg mt-4 px-6 shadow-green-500/40 text-white">
+                        <button type="button" class="bg-green-500 flex items-center gap-x-3 bg-gradient-to-r from-green-400 p-2 py-2.5 px-6 rounded shadow-lg mt-4 pr-6 shadow-green-500/40 text-white">
+                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M18.425 10.271C19.499 8.967 18.57 7 16.88 7H7.12c-1.69 0-2.618 1.967-1.544 3.271l4.881 5.927a2 2 0 0 0 3.088 0l4.88-5.927Z" clip-rule="evenodd"/>
+                            </svg>
                             Difficulté
                         </button>
                         <template #item="{ item }">
@@ -14,7 +17,7 @@
                 </div>
                 <!--  -->
                 <div class="h-2/5 w-full bg-slate-5 flex items-center justify-center relative">
-                    <button type="button" @click="manupChrono()" class="absolute right-2 top-4 gap-x-4 flex items-center bg-green-500 bg-gradient-to-r from-green-400 p-2 rounded-xl shadow-lg pr-6 shadow-green-500/40 text-white">
+                    <button type="button" @click="manupChrono()" class="absolute right-2 top-4 gap-x-4 flex items-center bg-green-500 bg-gradient-to-r from-green-400 p-2 rounded shadow-lg pr-6 shadow-green-500/40 text-white">
                         <div class="bg-white rounded-full text-green-500 h-8 w-8 flex items-center justify-center hover:shadow-lg duration-200">
                             <svg v-if="!startTime" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-4">
                                 <path fill-rule="evenodd" d="M4.5 5.653c0-1.427 1.529-2.33 2.779-1.643l11.54 6.347c1.295.712 1.295 2.573 0 3.286L7.28 19.99c-1.25.687-2.779-.217-2.779-1.643V5.653Z" clip-rule="evenodd" />

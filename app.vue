@@ -4,3 +4,13 @@
     <NuxtPage />
   </div>
 </template>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+
+* {
+  font-family: "Playwrite DE Grund", cursive;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+</style>

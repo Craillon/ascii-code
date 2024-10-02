@@ -95,13 +95,16 @@
                         <div class="">
                             <p class="text-xs mt-6 text-center">
                                 Vous avez terminé la partie de <span class="font-bold">{{ lorem.split(' ').length > 1 ? lorem.split(' ').length+' mots' : lorem.split(' ').length+' mot' }} </span>
-                                contant <span class="font-bold">{{ lorem.length > 1 ? lorem.length+' caractères' : lorem.length+' caractère' }}</span> <br>votre score est de
+                                contant <span class="font-bold">{{ lorem.length > 1 ? lorem.length+' caractères' : lorem.length+' caractère' }}</span> avec succès ! <br>votre score est de
                                 <span class="font-bold">{{ `${chrono.H} heure ${chrono.M} min ${chrono.S} sec ${chrono.T} tier` }}</span>
                             </p>
                         </div>
-                        <div class="flex justify-center w-full mt-10">
-                            <a href="/typing" class="text-slate-800 rounded-full bg-green-200 p-1.5 px-6 shadow-green-100 shadow-md hover:bg-green-300 duration-300">Rejouez</a>
+                        <div class="flex justify-center w-full my-10">
+                            <a :href="`#${level}`" @click="newParty(level)" class="text-slate-800 rounded-full bg-green-200 p-1.5 px-6 shadow-green-100 shadow-md hover:bg-green-300 duration-300">Rejouez</a>
                         </div>
+                    </div>
+                    <div class="absolute top-1 flex items-center justify-center mt-8 gap-x-8">
+                            <a v-for="(item, index) in items[0]" :key="index" :href="`#${item.label}`" @click="changeLevel(item.label)" class="text-xs py-1 hover:text-green-400 duration-300">{{ item.label }}</a>
                     </div>
                 </div>
                 <!-- EXIT BTN -->
@@ -112,6 +115,16 @@
                 </div>
             </div>
         </div>
+        <audio id="audio" class="hidden">
+            <source src="~/assets/audio/mechanical-keyboard-sounds-gaming-on-a-keyboard-17149 (2).mp3" type="audio/ogg">
+            <source src="~/assets/audio/mechanical-keyboard-sounds-gaming-on-a-keyboard-17149 (2).mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        <audio autoplay id="fond-sonor" class="hidden">
+            <source src="~/assets/audio/Louis Adrien - Escape to Sicily_Instrumental.mp3" type="audio/ogg">
+            <source src="~/assets/audio/Louis Adrien - Escape to Sicily_Instrumental.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     </div>
 </template>
 
@@ -147,6 +160,10 @@ const chrono = ref({
 })
 
 const idInterval = ref()
+
+const newParty = () => {
+    changeLevel('Mot')
+}
 
 const changeLevel = (data) => {
     label.value = data
@@ -200,6 +217,7 @@ const windowEvent = () => {
     window.addEventListener('keydown', ev => {
         startTime.value = true
         if (lorem.value.split('').at(index.value).charCodeAt(0) == ev.key.charCodeAt(0) || (lorem.value.split('').at(index.value -1) === "." && ev.key === " ") ) {
+            document.getElementById("audio").play()
             value.value = ev.key
             worldTyping.value = worldTyping.value.split('').slice(1).join('')
             index.value++
@@ -259,6 +277,13 @@ onBeforeMount(() => {
     worldTyping.value = lorem.value
     windowEvent()
     idInterval.value = intervalChrono()
+})
+
+onMounted(() => {
+    const fondSonor = document.getElementById("fond-sonor")
+    fondSonor.autoplay = true
+    fondSonor.volume = 0.005
+    fondSonor.loop = true
 })
 
 </script>

@@ -6,14 +6,18 @@
                 <div class="h-4/5 w-full flex items-center justify-center">
                     <div class="w-full text-center space-y-14">
                         <h4 class="text-2xl font-light text-green-700">Keyboard <span class="font-semibold text-slate-500">Game</span></h4>
-                        <img src="~/assets/images/1_BbDBPnpY_yt1q7CXtsYEJg.jpg" alt="" class="w-4/12 mx-auto mt-5">
-                        
+                        <div class="flex items-center z-50">
+                            <Vector class="absolut w-[30rem] mx-auto bg-white z-50 opacity-95" />
+                        </div>
                     </div>
                 </div>
-                <div class="absolute left-0 right-0 bottom-10 flex items-center justify-center">
+                <div class=" flex items-center justify-center">
                     <NuxtLink to="/typing" class=" mb-10 bg-green-400 shadow-lg shadow-green-500/40 text-white hover:bg-green-400 bg-gradient-to-r hover:from-green-500 py-2 hover:shadow-xl hover:duration-700 rounded-full px-6">
                         Evaluez votre temps de saisie !
                     </NuxtLink>
+                </div>
+                <div class="absolute bottom-4 right-2">
+                    <div class="text-xs">@Craillon > <span class="text-slate-300">Github | LinkedIn | TikTok</span></div>
                 </div>
             </div>
         </div>
@@ -27,9 +31,7 @@
 
 <script setup>
 onMounted(() => {
-    window.addEventListener('load',  ev => {
-        document.getElementById("audio").autoplay = true
-    })
+    document.getElementById("audio").volume = 0.03
 });
 </script>
 

@@ -56,12 +56,12 @@
                 </div>
                 <!-- LEVEL MODAL -->
                 <div v-if="worldTyping" class="">
-                    <UDropdown  class="text-green-500 absolute z-50" :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }" :popper="{ placement: 'bottom-start' }">
-                        <button :class="[label == '' ? 'w-' : '']" type="button" class="bg-green-500 w-48 h-11 flex items-center gap-x-3 bg-gradient-to-r from-green-400 p-2 py-2.5 px-6 rounded shadow-lg mt-4 pr-6 shadow-green-500/40 text-white">
-                            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                                <path fill-rule="evenodd" d="M18.425 10.271C19.499 8.967 18.57 7 16.88 7H7.12c-1.69 0-2.618 1.967-1.544 3.271l4.881 5.927a2 2 0 0 0 3.088 0l4.88-5.927Z" clip-rule="evenodd"/>
+                    <UDropdown  class="text-green-500 absolute -right-8 z-50" :items="items" :ui="{ item: { disabled: 'cursor-text select-text' } }" :popper="{ placement: 'bottom-start' }">
+                        <button type="button" class="bg-green-500 h- flex items-center gap-x-3 bg-gradient-to-r from-green-400 p-3 rounded shadow mt-4 shadow-green-500/40 text-white">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                             </svg>
-                            {{ label }}
+                            <!-- {{ label }} -->
                         </button>
                         <!--  -->
                         <template #item="{ item }">
@@ -130,6 +130,8 @@
 
 <script setup>
 import { faker } from '@faker-js/faker';
+const inc = ref(0)
+const func = () => inc.value++
 
 const items = [
     [
@@ -146,7 +148,7 @@ const items = [
 
 const level = ref("")
 
-const label = ref("..................")
+const label = ref("")
 const lorem = ref("")
 const worldTyping = ref(".")
 const value = ref("")
@@ -206,7 +208,6 @@ const changeLevel = (data) => {
     localStorage.setItem("level", data)
     clearInterva(idInterval.value)
     resetChrono()
-        
 }
 
 const manupChrono = () => {
